@@ -159,7 +159,7 @@ def crash(obj1, obj2, direction):
 
         if 0<nr<=N and 0<nc<=N:
             if mapp[nr][nc] > 0:
-                crash(obj2, map[nr][nc], direction)
+                crash(obj2, mapp[nr][nc], direction)
             santas[obj2] = [nr, nc]
             mapp[nr][nc] = obj2
         else:
