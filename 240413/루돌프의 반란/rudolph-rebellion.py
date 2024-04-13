@@ -20,7 +20,7 @@ faint = [0] * (P + 1)
 fail = [False] * (P + 1)
 
 def getDist(r1, r2, c1, c2):
-    return ((r1-r2)**2 + (c1-c2)**2)**0.5
+    return ((r1-r2)**2 + (c1-c2)**2)
 
 def turnR():
     global rudolf, santas, mapp, score, faint, fail, N, M, P, C, D
