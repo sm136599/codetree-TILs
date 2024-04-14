@@ -6,14 +6,12 @@ class BTree:
         self.parents = [-1] + parents
         self.authoriy = [-1] + authority
         self.children = [[] for _ in range(N+1)]
-        self.depth = [0] * (N+1)
         self.alam = [1] * (N+1)
         self.reset()
 
     def reset(self):
         for i in range(1, self.N + 1):
             self.children[self.parents[i]].append(i)
-            self.depth[i] = self.depth[self.parents[i]] + 1
 
     def setAlam(self, idx):
         self.alam[idx] ^= 1
@@ -33,18 +31,17 @@ class BTree:
 
     def countChat(self, idx):
         q = deque()
-        q.append(idx)
+        q.append((idx, 0))
 
         cnt = -1
-        depth = self.depth[idx]
         while q:
-            node = q.popleft()
-            if self.depth[node] - depth <= self.authoriy[node]:
+            node, power = q.popleft()
+            if power <= self.authoriy[node]:
                 cnt += 1
 
             for ch in self.children[node]:
                 if self.alam[ch]:
-                    q.append(ch)
+                    q.append((ch, power+1))
         print(cnt)
 
     def __str__(self):
